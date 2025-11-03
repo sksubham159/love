@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Months of Us 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* --- CUSTOM CSS VARIABLES (Replacing Tailwind Config) --- */
+        :root {
+            --primary-pink: #FFC0CB; /* Light Pink */
+            --secondary-red: #E94E77; /* Deep Rose */
+            --bg-light: #FFF0F5; /* Lavender Blush */
+            --hot-pink: #ff69b4; /* For floating hearts */
+            --text-gray-800: #1f2937;
+            --pink-600: #db2777;
+            --red-500: #ef4444;
+            --pink-100: #fce7f3;
+        }
+
+        /* --- GLOBAL STYLES (Replacing Tailwind Base) --- */
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-gray-800);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding: 1rem; /* p-4 */
+        }
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem; /* md:p-8 */
+            }
+        }
+        h1, h2, h3 {
+            font-family: 'Gochi Hand', cursive;
+        }
+        .font-display {
+            font-family: 'Gochi Hand', cursive;
+        }
+
+        /* --- HEADER STYLES --- */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem; /* mb-12 */
+            padding: 2rem; /* py-8 */
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border-radius: 1.5rem; /* rounded-3xl */
+            border-bottom: 4px solid rgba(233, 78, 119, 0.5); /* border-b-4 border-secondary-red/50 */
+            position: relative;
+            z-index: 10;
+        }
+        .header h1 {
+            font-size: 3rem; /* text-6xl */
+            color: var(--secondary-red);
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 5rem; /* md:text-8xl */
+            }
+        }
+        .header p:nth-of-type(1) { /* Subtitle */
+            font-size: 1.25rem; /* text-xl */
+            color: var(--pink-600);
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        @media (min-width: 768px) {
+            .header p:nth-of-type(1) {
+                font-size: 1.5rem; /* md:text-2xl */
+            }
+        }
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .icon-text-group {
+            display: flex;
+            align-items: center;
+        }
+        .icon-text-group span:first-child { /* Heart Icon */
+            font-size: 3rem; /* text-5xl */
+            color: var(--red-500);
+        }
+        .icon-text-group span:last-child {
+            font-size: 1.5rem; /* text-2xl */
+            margin-left: 1rem; /* ml-4 */
+            font-weight: 500; /* font-medium */
+        }
+        .date-display {
+            font-size: 1.875rem; /* text-3xl */
+            margin-top: 1rem; /* mt-4 */
+            color: var(--secondary-red);
+            font-weight: bold; /* font-bold */
+            font-family: 'Gochi Hand', cursive;
+        }
+
+        /* --- ANIMATIONS & EFFECTS --- */
+        .heart-icon svg {
+            width: 3rem; /* w-12 */
+            height: 3rem; /* h-12 */
+            display: inline-block;
+        }
+        .heart-icon {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- MEMORY GRID STYLES --- */
+        .memory-grid {
+            display: grid;
+            gap: 1.5rem; /* gap-6 */
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            grid-template-columns: 1fr; /* Default to single column */
+        }
+        @media (min-width: 768px) {
+            .memory-grid {
+                gap: 2rem; /* md:gap-8 */
+                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+            }
+        }
+        @media (min-width: 1024px) {
+            .memory-grid {
+                grid-template-columns: repeat(4, 1fr); /* lg:grid-cols-4 */
+            }
+        }
+
+        /* --- MEMORY CARD STYLES --- */
+        .memory-card {
+            background-color: white;
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            border-top: 8px solid var(--primary-pink); /* border-t-8 border-primary-pink */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .memory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(233, 78, 119, 0.5);
+        }
+        .memory-card h2 {
+            font-size: 1.875rem; /* text-3xl */
+            color: var(--secondary-red);
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .memory-card p {
+            flex-grow: 1; /* flex-grow */
+            line-height: 1.625; /* leading-relaxed */
+        }
+
+        /* Highlighted 7th Card */
+        .memory-card.highlighted {
+            background-color: var(--pink-100); /* bg-pink-100 */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            border-top: 8px solid var(--secondary-red); /* border-t-8 border-secondary-red */
+        }
+        @media (min-width: 768px) {
+            .memory-card.highlighted {
+                grid-column: span 2 / span 2; /* md:col-span-2 */
+            }
+        }
+        @media (min-width: 1024px) {
+            .memory-card.highlighted {
+                grid-column: span 2 / span 2; /* lg:col-span-2 */
+            }
+        }
+        .memory-card.highlighted h2 {
+            font-size: 2.25rem; /* text-4xl */
+        }
+        .memory-card.highlighted p:nth-of-type(1) { /* Date */
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* text-gray-500 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .memory-card.highlighted p:nth-of-type(2) { /* Main Text */
+            font-size: 1.125rem; /* text-lg */
+        }
+        .card-button-container {
+            margin-top: 1.5rem; /* mt-6 */
+            text-align: center;
+        }
+        .card-button {
+            background-color: var(--secondary-red);
+            color: white;
+            padding: 0.75rem 2rem; /* py-3 px-8 */
+            border-radius: 9999px; /* rounded-full */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            transition: all 0.3s ease;
+            outline: none; /* focus:outline-none */
+        }
+        .card-button:hover {
+            background-color: #ec4899; /* hover:bg-pink-600 */
+            transform: scale(1.05); /* hover:scale-105 */
+        }
+        .card-button:focus {
+            box-shadow: 0 0 0 4px rgba(233, 78, 119, 0.5); /* focus:ring-4 focus:ring-secondary-red/50 */
+        }
+        .card-signature {
+            margin-top: 1rem; /* mt-4 */
+            text-align: center;
+            color: var(--pink-600);
+            font-weight: bold;
+        }
+
+
+        /* --- FLOATING HEART ANIMATION CSS --- */
+        #heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            color: var(--hot-pink);
+            opacity: 0;
+            animation: float 10s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- CUSTOM MODAL CSS (Adjusted for compactness) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            /* REDUCED PADDING: from 2rem to 1.5rem */
+            padding: 1.5rem; 
+            border-radius: 1rem;
+            max-width: 90%;
+            /* SLIGHTLY SMALLER WIDTH: from 450px to 400px */
+            width: 400px; 
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            border-top: 8px solid var(--secondary-red); /* border-t-8 */
+        }
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            font-size: 2.25rem; /* text-4xl */
+            color: var(--secondary-red);
+            /* REDUCED BOTTOM MARGIN: from 1rem to 0.5rem */
+            margin-bottom: 0.5rem; 
+        }
+        .modal-body-container {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border-radius: 1rem; /* rounded-2xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            /* REDUCED INNER PADDING: from 1rem/1.5rem to 0.75rem */
+            padding: 0.75rem; 
+            overflow-y: auto;
+            /* REDUCED MAX HEIGHT: from 70vh to 50vh */
+            max-height: 50vh; 
+            /* REDUCED BOTTOM MARGIN: from 1rem to 0.75rem */
+            margin-bottom: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .modal-body-container {
+                /* REDUCED PADDING: from 1.5rem to 1rem */
+                padding: 1rem; 
+            }
+        }
+        #modal-message-body {
+            font-size: 1.25rem; /* text-xl */
+            color: #374151; /* text-gray-700 */
+            line-height: 1.625; /* leading-snug */
+            white-space: pre-line;
+        }
+        #close-modal-btn {
+            background-color: var(--primary-pink);
+            color: var(--secondary-red);
+            padding: 0.5rem 1.5rem; /* py-2 px-6 */
+            border-radius: 9999px; /* rounded-full */
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+            /* REDUCED TOP MARGIN: from 1rem to 0.5rem */
+            margin-top: 0.5rem;
+        }
+        #close-modal-btn:hover {
+            background-color: #f472b6; /* hover:bg-pink-300 - approximated */
+        }
+
+        /* --- FOOTER STYLES --- */
+        .footer {
+            text-align: center;
+            margin-top: 3rem; /* mt-12 */
+            padding-top: 1rem; /* py-4 */
+            padding-bottom: 1rem;
+            color: #6b7280; /* text-gray-500 */
+            font-size: 0.875rem; /* text-sm */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="heart-container"></div>
+
+    <header class="header">
+        <h1 class="font-display">
+            Our 7 Months of Togetherness
+        </h1>
+        <p>
+            A Journey of Love, Laughter, and Endless Memories
+        </p>
+        <div class="header-content">
+            <div class="icon-text-group">
+                <span class="heart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="fill: var(--red-500); width: 48px; height: 48px;">
+                        <path d="m11.645 20.91-.007-.003-.02-.012c-.326-.162-1.256-.51-2.68-.948a12.333 12.333 0 0 1-2.813-.569 12.333 12.333 0 0 1-2.814-.57L3.64 18.067C1.895 16.033 1 14.1 1 12c0-3.333 2.5-6 6-6s6 2.667 6 6v.08c0 3.823-3.6 7.6-6 7.82V12c0-3.333 2.5-6 6-6s6 2.667 6 6v.08c0 3.823-3.6 7.6-6 7.82Z" />
+                        <path d="M19.78 20.37c3.153-2.022 5.22-5.462 5.22-9.37 0-3.333-2.5-6-6-6s-6 2.667-6 6v.08c0 3.823-3.6 7.6-6 7.82l-.007-.003-.02-.012c-.326-.162-1.256-.51-2.68-.948a12.333 12.333 0 0 1-2.813-.569 12.333 12.333 0 0 1-2.814-.57L3.64 18.067C1.895 16.033 1 14.1 1 12c0-3.333 2.5-6 6-6s6 2.667 6 6v.08c0 3.823-3.6 7.6-6 7.82Z" fill="#F87171" opacity="0.8"/>
+                    </svg>
+                </span>
+                <span>
+                    The Start of Our Forever
+                </span>
+            </div>
+            <p class="date-display">
+                <span class="heart-icon" style="animation: pulse 2s infinite;">🗓️</span> Start Date: April 3, 2025
+            </p>
+        </div>
+    </header>
+
+    <div class="memory-grid">
+
+        <div class="memory-card">
+            <h2>Month 1: The First Spark ✨</h2>
+            <p>
+                It all started here. I remember the exact moment I realized this was going to be something special. The time I told you to follow your heart, and then you confessed your feelings for me. That was the turning point for me; I was so happy I jumped out of bed, feeling like I had been given my whole world. I love you, Yaar.
+            </p>
+        </div>
+
+        <div class="memory-card">
+            <h2>Month 2: Our First Adventure 🗺️</h2>
+            <p>
+                Whether it was a trip to the park or a movie night in, our first "big outing" felt like exploring a new world. The way you smile a little when I look at you makes my heart say, "Damn, boy, you found your lost self." When I look at you, I just think how gorgeous you are; I could stare at you for hours. The moment of relief when I'm with you means that every time I'm with you, it's a new adventure for me.
+            </p>
+        </div>
+
+        <div class="memory-card">
+            <h2>Month 3: The Laughter 😂</h2>
+            <p>
+                By now, we have a language all our own! The nicknames, the silly phrases, the looks we share across a crowded room. This is when I knew we truly 'got' each other. I won't say we just got to know each other; rather, I'll say we found ourselves. We share so many laughs and so many things between us—hell, like everything—and the best part is your smile. If someone asks me what the most beautiful thing in the world is, apart from your eyes, I will go for your smile.
+            </p>
+        </div>
+
+        <div class="memory-card">
+            <h2>Month 4: Deep Comfort & Trust 🫂</h2>
+            <p>
+                This month was about settling into a deep, comforting routine. No need for pretense, just being completely ourselves. You are my safe space and my best friend. Whenever I feel like I'm not settling down or have any occurrence of unsettling thoughts in my life, I come to you and share everything because I know you are the only person who won't discredit me, and who will adore me in your arms and tell me, "Don't worry, my bacha, I'm always with you." It's like that song: "Aaja piya tohe pyar dun, gori baya tope waar dun." Hayeee.
+            </p>
+        </div>
+
+        <div class="memory-card">
+            <h2>Month 5: Planning the Future 🚀</h2>
+            <p>
+                We started dreaming bigger—planning that future trip, discussing our goals, and seeing how our lives perfectly intertwine. Every moment with you makes me excited for what's next, and with every moment, all I want is to have your presence beside me. I can't do it alone. You are my greatest strength and my greatest weakness, but you give me a reason to be alive and achieve everything I need in my life so that I can be with you permanently. I just want to say I love you so, so much.
+            </p>
+        </div>
+
+        <div class="memory-card">
+            <h2>Month 6: Overcoming Together 💪</h2>
+            <p>
+                We faced a little challenge, a small bump along our journey, we were being in this long distance but instead of letting it pull us apart, we faced it together — with patience, understanding, and love. The way we communicated, listened, and chose kindness over ego showed just how deeply connected we are. Every moment, even the tough ones, reminds me that we’re not just partners—we’re a team, always choosing each other no matter what. ❤️ 
+            </p>
+        </div>
+
+        <div class="memory-card highlighted">
+            <h2>Month 7: Forever Starts Now! 💍</h2>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Date: [Apr 2025]</p>
+            <p style="font-size: 1.125rem; line-height: 1.625; flex-grow: 1;">
+                Seven months down, and a lifetime still waiting for us — and I couldn’t be more grateful for every single moment we’ve shared. Every day with you feels like a new chapter in the most beautiful story, one filled with laughter, understanding, and endless love. I fall deeper for you — for your heart, your strength, your warmth, and the way you make even ordinary days feel special. You’ve become my favorite person, my constant, and my safe place. Here’s to us — to growing together, chasing dreams side by side, and celebrating countless more milestones in the lifetime we’re building together.
+            </p>
+            <div class="card-button-container">
+                <button id="show-love-note" class="card-button">
+                    Click For A Special Note!
+                </button>
+            </div>
+            <div class="card-signature">
+                <p>
+                    I love you more than words can say. - your Sk
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Built with love for my Kusu. </p>
+    </footer>
+
+    <div id="love-note-modal" class="modal-overlay" onclick="document.getElementById('love-note-modal').classList.remove('open')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>A Little Message Just For You...</h3>
+            <div class="modal-body-container">
+                <p id="modal-message-body">
+                    My dearest, every moment since we met has been the greatest gift. You light up my world like no one else, and I cherish all the beautiful memories we've made in these 7 months. I love you!
+                    
+                    This one's for you:
+                    
+                    मैंने फ़क़त तुझे चाहा ऐसा कि शाम क्या,  
+                    हर अँधेरे में भी तलाशा तुझे।  
+                    
+                    मुझे तुझसे इतना प्यार है कि  
+                    तेरी सूरत से ज़्यादा  
+                    तेरे साथ बिताए लम्हों का दीदार है।  
+                    
+                    यह साया मोहब्बत का जो मेरे सीने में लगी आग है,  
+                    इस दिल की बस एक तू ही जान-निसार है।  
+                    
+                    इतना कहूँगा कि मोहब्बत है तुमसे,  
+                    जिसे बयां ना कर पाऊँ,  
+                    यूँ लिखूँ भी तो क्या,  
+                    इन शब्दों से तुझे जतला ना पाऊँ। ❤️
+                </p>
+            </div>
+            <button id="close-modal-btn">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // CRITICAL CHANGE: Using 'var' instead of 'const' and 'let', and simplifying string formatting.
+        window.onload = function() {
+            var heartContainer = document.getElementById('heart-container');
+            var showNoteBtn = document.getElementById('show-love-note');
+            var closeModalBtn = document.getElementById('close-modal-btn');
+            var modal = document.getElementById('love-note-modal');
+            
+            // --- FLOATING HEARTS LOGIC ---
+            var heartShapes = ['❤️', '💖', '✨', '🌸'];
+
+            function createHeart() {
+                var heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                
+                // Pick a random heart emoji/shape
+                heart.textContent = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+                
+                // CRITICAL CHANGE: Using string concatenation (+) instead of Template Literals ($ {}).
+                heart.style.left = (Math.random() * 100) + 'vw';
+                
+                // Random size
+                heart.style.fontSize = (10 + Math.random() * 20) + 'px';
+                
+                // Random animation duration and delay for staggered look
+                heart.style.animationDuration = (7 + Math.random() * 8) + 's';
+                heart.style.animationDelay = '-' + (Math.random() * 5) + 's';
+
+                heartContainer.appendChild(heart);
+
+                // Remove heart after animation to keep DOM clean
+                setTimeout(function() {
+                    heart.remove();
+                }, 15000);
+            }
+
+            // Generate a continuous stream of hearts
+            setInterval(createHeart, 300); 
+
+            // --- CUSTOM MODAL LOGIC ---
+            if (showNoteBtn && modal) {
+                showNoteBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.add('open');
+                });
+            } 
+            
+            if (closeModalBtn && modal) {
+                closeModalBtn.addEventListener('click', function() {
+                    modal.classList.remove('open');
+                });
+            }
+        }; // End of window.onload function
+    </script>
+</body>
+</html>
